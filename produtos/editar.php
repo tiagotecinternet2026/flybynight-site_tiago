@@ -16,7 +16,7 @@
 
 // PARTE 2
 
-// 1) Dectectar o acionamento do formulário de atualização
+// 1) Detectar o acionamento do formulário de atualização
 
 // 2) Capturar os dados do formulário
 
