@@ -6,12 +6,17 @@
 // PARTE 1
 
 // 1) Importar os arquivos de função de fornecedores e produtos
+require_once "../src/fornecedor_crud.php";
+require_once "../src/produto_crud.php";
 
 // 2) Capturar e guardar o id do produto que será carregado/atualizado
+$id = $_GET['id'];
 
 // 3) Chamar a função buscarFornecedores e receber a lista de fornecedores (guarde em um variável chamada $fornecedores)
+$fornecedores = buscarFornecedores($conexao);
 
 // 4) Chamar a função buscarProdutoPorId e receber os dados do produto (guarde em uma variável chamada $produto)
+$produto = buscarProdutoPorId($conexao, $id);
 
 
 // PARTE 2
@@ -51,21 +56,25 @@
         No caso do campo textarea, coloque o valor dentro da tag. 
         -->
         <form action="" method="post">
+            <input type="hidden" name="id" value="<?= $produto['id'] ?>">
             <div>
                 <label for="nome">Nome:</label>
-                <input type="text" name="nome" id="nome" maxlength="100" required>
+                <input value="<?= $produto['nome'] ?>"
+                type="text" name="nome" id="nome" maxlength="100" required >
             </div>
             <div>
                 <label for="descricao">Descrição:</label>
-                <textarea name="descricao" id="descricao" rows="5"></textarea>
+                <textarea name="descricao" id="descricao" rows="5"><?= $produto['descricao'] ?></textarea>
             </div>
             <div>
                 <label for="preco">Preço:</label>
-                <input type="number" name="preco" id="preco" min="0" step="0.01" required>
+                <input value="<?= $produto['preco'] ?>"
+                type="number" name="preco" id="preco" min="0" step="0.01" required>
             </div>
             <div>
                 <label for="quantidade">Quantidade:</label>
-                <input type="number" name="quantidade" id="quantidade" min="0" step="1" required>
+                <input value="<?= $produto['quantidade'] ?>"
+                 type="number" name="quantidade" id="quantidade" min="0" step="1" required>
             </div>
             <div>
                 <label for="fornecedor">Fornecedor:</label>
@@ -82,6 +91,14 @@
                     6.2) O fornecedor daquele produto que está sendo exibido,
                     já DEVE VIR SELECIONADO. Programe os recursos para isso
                     acontecer.  -->
+                    <?php foreach($fornecedores as $fornecedor): ?>
+                        <!-- Se PK de fornecedor for igual à FK de produto, selecione o fornecedor -->
+                        <option
+                        <?= $fornecedor["id"] === $produto["fornecedor_id"] ? 'selected' : '' ?>
+                         value="<?= $fornecedor['id'] ?>"> 
+                            <?= $fornecedor['nome'] ?> 
+                        </option>
+                    <?php endforeach ?>
                 </select>
             </div>
             <button type="submit">Atualizar</button>
