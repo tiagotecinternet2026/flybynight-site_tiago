@@ -20,8 +20,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $fornecedor = $_POST['fornecedor'];
 
     // 3) Chamar a função de inserir e passar os dados para ela
+    inserirProduto($conexao, $nome, $descricao, $preco, $quantidade, $fornecedor);
 
     // 4) Redirecionar para a página que mostra os produtos
+    header("location:listar.php");
+    exit;
 }
 
 // 5) Cadastre pelo menos 3 produtos (invente os dados)
