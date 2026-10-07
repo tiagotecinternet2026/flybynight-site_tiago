@@ -13,6 +13,18 @@
 
 // 4) Chamar a função buscarProdutoPorId e receber os dados do produto (guarde em uma variável chamada $produto)
 
+
+// PARTE 2
+
+// 1) Dectectar o acionamento do formulário de atualização
+
+// 2) Capturar os dados do formulário
+
+// 3) Chamar a função atualizarProduto e passar os dados pra ela
+
+// 4) Redirecionar para a página listar produtos
+
+// 5) Testar: tente atualizar dados de pelo menos 3 produtos
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
