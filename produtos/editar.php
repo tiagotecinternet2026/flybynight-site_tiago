@@ -92,10 +92,17 @@ $produto = buscarProdutoPorId($conexao, $id);
                     já DEVE VIR SELECIONADO. Programe os recursos para isso
                     acontecer.  -->
                     <?php foreach($fornecedores as $fornecedor): ?>
-                        <!-- Se PK de fornecedor for igual à FK de produto, selecione o fornecedor -->
-                        <option
-                        <?= $fornecedor["id"] === $produto["fornecedor_id"] ? 'selected' : '' ?>
-                         value="<?= $fornecedor['id'] ?>"> 
+                    <!-- A condicional abaixo (feita dentro da tag <option>)
+                    faz com que o fornecedor do produto que está sendo editado
+                    já venha selecionado. A lógica geral é:
+                    
+                        Se o id do fornecedor (que vem de $fornecedor['id']) for o mesmo
+                        do que está registrado no produto (que vem de $produto['fornecedor_id']),
+                        então aplique o atributo 'selected'. Caso contrário, não faça nada.
+                    -->
+                        <option 
+                        <?= $fornecedor['id'] === $produto['fornecedor_id'] ? 'selected' : '' ?>
+                        value="<?= $fornecedor['id'] ?>"> 
                             <?= $fornecedor['nome'] ?> 
                         </option>
                     <?php endforeach ?>
