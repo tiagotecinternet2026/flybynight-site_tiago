@@ -81,3 +81,11 @@ function atualizarProduto(
 
     $consulta->execute();
 }
+
+function excluirProduto(PDO $conexao, int $id):void
+{
+    $sql = "DELETE FROM produtos WHERE id = :id";
+    $consulta = $conexao->prepare($sql);
+    $consulta->bindValue(":id", $id);
+    $consulta->execute();
+}
